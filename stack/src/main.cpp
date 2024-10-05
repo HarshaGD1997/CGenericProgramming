@@ -44,6 +44,8 @@ int main(int argc, char **argv){
 	StackPush(&s, 20);
 	int popRes = StackPop(&s);
 	std::cout << "Element : " << popRes <<std::endl;
+	popRes = StackPop(&s);
+	std::cout << "Element : " << popRes <<std::endl;
 	StackDispose(&s);	
 	return 0;
 }
