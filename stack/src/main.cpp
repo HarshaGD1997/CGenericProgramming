@@ -22,12 +22,28 @@ void StackPush(stack *s, int value){
 		assert(s->elems != NULL);	
 	}
 
+	s->elems[s->logicalLen] = value;
+	s->logicalLen++;
+
+}
+
+int StackPop(stack *s){
+	
+	assert(s->logicalLen > 0);
+	s->logicalLen--;
+	return s->elems[s->logicalLen];
+	
+	
 }
 
 int main(int argc, char **argv){
 	
 	stack s;
 	StackNew(&s);
+	StackPush(&s, 10);
+	StackPush(&s, 20);
+	int popRes = StackPop(&s);
+	std::cout << "Element : " << popRes <<std::endl;
 	StackDispose(&s);	
 	return 0;
 }
