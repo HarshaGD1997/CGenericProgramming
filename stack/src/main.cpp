@@ -19,6 +19,7 @@ void StackPush(stack *s, int value){
 	if(s->logicalLen == s->allocatedLen){
 		s->allocatedLen *= 2;
 		s->elems = (int*)realloc(s->elems, s->allocatedLen*sizeof(int));
+		std::cout << "***Reallocated***" << std::endl;
 		assert(s->elems != NULL);	
 	}
 
@@ -40,12 +41,33 @@ int main(int argc, char **argv){
 	
 	stack s;
 	StackNew(&s);
-	StackPush(&s, 10);
-	StackPush(&s, 20);
-	int popRes = StackPop(&s);
-	std::cout << "Element : " << popRes <<std::endl;
-	popRes = StackPop(&s);
-	std::cout << "Element : " << popRes <<std::endl;
+	/*
+	 * StackPush(&s, 10);
+	 * StackPush(&s, 20);
+	 * int popRes = StackPop(&s);
+	 * std::cout << "Element : " << popRes <<std::endl;
+	 * popRes = StackPop(&s);
+	 * std::cout << "Element : " << popRes <<std::endl;
+	*/
+	int ch;
+	while(1){
+		std::cout << "Enter 1 to push\nEnter 2 to pop\t : ";
+		std::cin >> ch;
+		if(ch == 1){
+			std::cout << "Enter an integer to push : ";
+		       	int ele;
+			std::cin >> ele;
+			StackPush(&s, ele);	
+		}
+		else if(ch == 2){
+			int popRes = StackPop(&s);
+			std::cout << "Popped ele : " << popRes << std::endl;
+		}
+		else{
+			exit(0);
+		}		
+	
+	}
 	StackDispose(&s);	
 	return 0;
 }
