@@ -41,9 +41,17 @@ void StackPop(stack *s, void *elemAdd){
 }
 
 int main(int argc, char **argv){
-
+	
+	int top;
+	int p1 = 4, p2 = 3;
 	stack s;
 	StackNew(&s, sizeof(int));
+	StackPush(&s, &p1);
+	StackPush(&s, &p2);
+	StackPop(&s, &top);
+	std::cout << "popped elem : " << top << std::endl;
+	StackPop(&s, &top);
+	std::cout << "popped elem : " << top << std::endl;
 	StackDispose(&s);
 
 	return 0;
