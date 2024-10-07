@@ -19,6 +19,7 @@ void StackDispose(stack *s){
 }
 
 static void StackGrow(stack *s){
+	std::cout << "Stack Grow helper function call " << std::endl;
 	s->allocatedLen *= 2;
 	s->elems = realloc(s->elems, s->allocatedLen * s->elemSize);
 }
@@ -52,7 +53,25 @@ int main(int argc, char **argv){
 	std::cout << "popped elem : " << top << std::endl;
 	StackPop(&s, &top);
 	std::cout << "popped elem : " << top << std::endl;
+	
 	StackDispose(&s);
+
+	char c1 = 'a', c2 = 'b', c3 = 'c', c4 = 'd', c5 = 'e';
+	char cTop;
+	stack s1;
+	StackNew(&s1, sizeof(char));
+	StackPush(&s1, &c1);
+	StackPush(&s1, &c2);
+	StackPop(&s1, &cTop);
+       	std::cout << "popped elem : "<< cTop <<std::endl;
+	StackPop(&s1, &cTop);
+	std::cout << "popped elem : " << cTop <<std::endl;	
+	StackPush(&s1, &c3);
+	StackPush(&s1, &c4);
+	StackPush(&s1, &c5);
+	StackPop(&s1, &cTop);
+	std::cout << "popped elem : "<< cTop <<std::endl;
+	StackDispose(&s1);
 
 	return 0;
 }
