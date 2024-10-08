@@ -71,7 +71,25 @@ int main(int argc, char **argv){
 	StackPush(&s1, &c5);
 	StackPop(&s1, &cTop);
 	std::cout << "popped elem : "<< cTop <<std::endl;
+	
 	StackDispose(&s1);
+
+	const char *friendName[]={"Bob", "Alice"};
+	stack stringStack;
+	StackNew(&stringStack, sizeof(char*));
+	for(int i=0; i<2; i++){
+		char *copy = strdup(friendName[i]);
+		StackPush(&stringStack, &copy);
+	}
+
+	char *name;
+	for(int i=0; i<2; i++){
+		StackPop(&stringStack, &name);
+		std::cout << "name : " << name <<std::endl;
+		free(name);
+	}
+
+	StackDispose(&stringStack);
 
 	return 0;
 }
